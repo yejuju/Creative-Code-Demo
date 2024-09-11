@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="p5.js"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Random Walker</title>
+    <style>
+        .h{
+            position: fixed; 
+            color: white; 
+            font-size: 200px; 
+            font-family: 'Arial';
+            margin: 100px; 
+            left: 20%;
+            transform: translateX(50%) translateY(-50%); 
+            top: 50%; 
+        }
+
+    </style>
+</head>
+
+<body>
+    <script src="sketch.js"></script>
+    <h1 class="h">Random Walker</h1>
+    <p1>The walker starts in the middle of the screen and keeps moving while the program is running. As it moves, its color changes slightly with each step, and the thickness of its path (stroke weight) also changes in a smooth, wavy way. <br> The point's movements are restricted to stay within the edges of the canvas so it doesn't go off the screen. It repeats the steps very quickly (9,000 steps every time the screen refreshes), so it looks like the walker is moving smoothly across the screen.</p1>
+</body>
+
+</html>

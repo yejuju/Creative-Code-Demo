@@ -1,0 +1,11 @@
+p1 {
+    position: fixed;
+    bottom: 50%;
+    right: 50%;
+    transform: translateY(50%);
+    color: white;
+    font-family: 'Lucida Bright';
+    font-size: 20px;
+    line-height: 30px;
+    margin: 100px;
+}
