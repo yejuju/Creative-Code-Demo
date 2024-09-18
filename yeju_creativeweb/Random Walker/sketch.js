@@ -32,6 +32,7 @@ class Walker {
     this.y += random(-1, 1);
     this.x = constrain(this.x, 0, width);
     this.y = constrain(this.y, 0, height);
+  
     
     this.r += random(-1, 1);
     this.g += random(-1, 1);
