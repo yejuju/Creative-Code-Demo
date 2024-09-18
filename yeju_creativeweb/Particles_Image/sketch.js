@@ -58,13 +58,13 @@ class Particle {
         this.vel = createVector(0, 0);
         this.acc = createVector(0, 0);
 
-        // Color of the particle (preserved from the image)
+        // Color 
         this.color = color;
 
-        // Age of the particle (starts from the maximum)
+        // Age 
         this.age = MAX_AGE;
 
-        // Size factor based on age
+        // Size based on age
         this.size = particleSize;
     }
 
@@ -75,7 +75,7 @@ class Particle {
     update() {
         let mouseVector = createVector(mouseX, mouseY);
     
-        // Calculate vectors to determine forces
+        
         let fromMouseToParticle = p5.Vector.sub(this.pos, mouseVector);
         let distanceToMouse = fromMouseToParticle.mag();
         let fromParticleToTarget = p5.Vector.sub(this.target, this.pos);
@@ -83,40 +83,31 @@ class Particle {
     
         let totalForce = createVector(0, 0);
     
-        // Generate a random brush size for the mouse effect (between 0 and 70)
+        
         let randomBrushSize = random(0, 150);
     
-        // Repulsive force from the mouse if within the random brush size
         if (distanceToMouse < randomBrushSize) {
             let repulsionForce = map(distanceToMouse, 0, randomBrushSize, MAX_FORCE, MIN_FORCE);
             fromMouseToParticle.setMag(repulsionForce);
             totalForce.add(fromMouseToParticle);
         }
     
-        // Attractive force towards the particle's target
         let attractionForce = map(distanceToTarget, 0, 100, MIN_FORCE, MAX_FORCE);
         fromParticleToTarget.setMag(attractionForce);
         totalForce.add(fromParticleToTarget);
     
-        // Apply total force to acceleration
         this.applyForce(totalForce);
     
-        // Update velocity based on acceleration
         this.vel.add(this.acc);
     
-        // Update position based on velocity
         this.pos.add(this.vel);
     
-        // Dampen velocity slightly (for smoother stopping)
         this.vel.mult(0.95);
     
-        // Reset acceleration for the next frame
         this.acc.mult(0);
     
-        // Age the particle and decrease its size as it gets older
         this.age -= 0.25;
     
-        // Size grows and then shrinks based on age
         let sizeFactor = map(this.age, MAX_AGE, 0, 1.5, 0);  
         this.size = particleSize * sizeFactor;
     }
