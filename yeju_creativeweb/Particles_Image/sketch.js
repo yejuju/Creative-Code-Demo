@@ -7,9 +7,12 @@ const MAX_AGE = 255;  // Maximum age of the particle
 let imgUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Claude_Monet_-_Water_Lilies%2C_1917-1919.JPG/2880px-Claude_Monet_-_Water_Lilies%2C_1917-1919.JPG';
 let img;
 let particles = [];
+let sound;
+
 
 function preload() {
     img = loadImage(imgUrl);
+    sound = loadSound("Hit2.mp3")
 }
 
 function setup() {
@@ -48,6 +51,7 @@ function spawnParticles() {
     }
 }
 
+
 class Particle {
     constructor(x, y, color) {
         // Initial position
@@ -66,6 +70,7 @@ class Particle {
 
         // Size based on age
         this.size = particleSize;
+        this.played = false;
     }
 
     applyForce(force) {
@@ -90,6 +95,12 @@ class Particle {
             let repulsionForce = map(distanceToMouse, 0, randomBrushSize, MAX_FORCE, MIN_FORCE);
             fromMouseToParticle.setMag(repulsionForce);
             totalForce.add(fromMouseToParticle);
+
+            if(this.played == false) {
+                sound.play();
+                this.played = true;
+            }
+
         }
     
         let attractionForce = map(distanceToTarget, 0, 100, MIN_FORCE, MAX_FORCE);
