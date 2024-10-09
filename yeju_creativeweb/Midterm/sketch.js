@@ -13,8 +13,8 @@ let angMult = 25; //0.1 = straighter lines; 25+ = sharp curves, being more curvy
 let angTurn = 4; // adjust angle for straight lines (after adjusting angMult)
 let zOffInc = 0.0003; // (z offset increment), speed of vactor changes
 let inc = 0.09; // the more increment, the more noise changes, more noise detail
-let sclX = 2.001;  // Cell width
-let sclY = 2.001;  // Cell height
+let sclX = 2.5;  // Cell width
+let sclY = 2.5;  // Cell height
 let zoff = 0;
 let particles = []; 
 let flowfield; // how particles move.
@@ -22,7 +22,7 @@ let hu = 0; // hue = 0: red;
 let p = 1;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
   colorMode(HSB, 359, 100, 100, 100);  // HSB: hue, saturation, brightness; hue ranges to 0 to 359 (red)
   background(0);
   
@@ -39,6 +39,18 @@ function setup() {
     particles[i] = new Particle();
   }
   
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  background(0);
+  cols = floor(width / sclX);  // Number of columns; floor could get rid of the decimal place
+  rows = floor(height / sclY); // Number of rows
+  // 'current' and 'previous' are buffers 
+  current = new Array(cols).fill(0).map(n => new Array(rows).fill(0));
+  previous = new Array(cols).fill(0).map(n => new Array(rows).fill(0));
+  
+  flowfield = new Array(cols * rows);
 }
 
 function draw() {
