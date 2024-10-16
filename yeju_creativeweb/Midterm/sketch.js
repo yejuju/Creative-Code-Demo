@@ -22,15 +22,15 @@ let hu = 0; // hue = 0: red;
 let p = 1;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(1000, 562.5);
   colorMode(HSB, 359, 100, 100, 100);  // HSB: hue, saturation, brightness; hue ranges to 0 to 359 (red)
-  background(0);
+  background(255);
   
   cols = floor(width / sclX);  // Number of columns; floor could get rid of the decimal place
   rows = floor(height / sclY); // Number of rows
 
   // 'current' and 'previous' are buffers 
-  current = new Array(cols).fill(0).map(n => new Array(rows).fill(0));
+  current = new Array(cols).fill(0).map(n => new Array(rows).fill(0));  // cols = how many columns (vertical boxes) there are on the grid
   previous = new Array(cols).fill(0).map(n => new Array(rows).fill(0));
   
   flowfield = new Array(cols * rows);
@@ -42,8 +42,8 @@ function setup() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  background(0);
+  resizeCanvas(1000, 562.5);
+  background(255);
   cols = floor(width / sclX);  // Number of columns; floor could get rid of the decimal place
   rows = floor(height / sclY); // Number of rows
   // 'current' and 'previous' are buffers 
@@ -104,7 +104,7 @@ function draw() {
         let angle = noise(xoff, yoff, zoff) * angMult * angTurn; // creates a random angle using Perlin noise, which will decide the direction 
         let v = p5.Vector.fromAngle(angle); // create a 'vector'(direction and speed), based on that angle
         v.setMag(0.5); // speed (magnitude) of the vector
-        flowfield[index] = v; // direction of the flowfield
+        flowfield[index] = v; // v(vector) = direction of the flowfield
         xoff += inc; //increace
       }
       yoff += inc;
@@ -134,5 +134,5 @@ function mouseDragged() {
 // mouseY < height : not below the canvas
 
 function mousePressed() {
-  p *= -1;  // Toggle particle movement on mouse press
+  p *= -1;  // p=-1 means pause, p=1 means start
 }
