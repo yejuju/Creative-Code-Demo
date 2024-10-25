@@ -24,7 +24,7 @@ let p = 1;
 function setup() {
   createCanvas(1000, 562.5);
   colorMode(HSB, 359, 100, 100, 100);  // HSB: hue, saturation, brightness; hue ranges to 0 to 359 (red)
-  background(255);
+  background(0);
   
   cols = floor(width / sclX);  // Number of columns; floor could get rid of the decimal place
   rows = floor(height / sclY); // Number of rows
@@ -43,7 +43,7 @@ function setup() {
 
 function windowResized() {
   resizeCanvas(1000, 562.5);
-  background(255);
+  background(0);
   cols = floor(width / sclX);  // Number of columns; floor could get rid of the decimal place
   rows = floor(height / sclY); // Number of rows
   // 'current' and 'previous' are buffers 

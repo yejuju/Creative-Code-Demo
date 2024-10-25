@@ -12,7 +12,6 @@ let sound;
 
 function preload() {
     img = loadImage(imgUrl);
-    sound = loadSound("Hit2.mp3")
 }
 
 function setup() {
@@ -96,10 +95,6 @@ class Particle {
             fromMouseToParticle.setMag(repulsionForce);
             totalForce.add(fromMouseToParticle);
 
-            if(this.played == false) {
-                sound.play();
-                this.played = true;
-            }
 
         }
     
